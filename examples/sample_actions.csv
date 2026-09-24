@@ -1,0 +1,6 @@
+sample_kind,event,module,direction,requested_quantity,filled_quantity,status,note
+synthetic,DIRECT_CONFIRMATION,DIRECT_ARB,ETF_CHEAP,1000,0,CONFIRMED,Illustrative signal only
+synthetic,ORDER,EXECUTION,BUY_RITC,1000,1000,FILLED,Illustrative protected lead fill
+synthetic,ORDER,EXECUTION,SELL_BASKET,1000,1000,HEDGED,Illustrative matched basket hedge
+synthetic,FX_CASH_CONVERSION_SIGNAL,FX,SELL_USD,25000,25000,FILLED,Illustrative residual cash conversion
+synthetic,TENDER_ROUTE,TENDER,HYBRID,20000,0,EVALUATED,Illustrative route comparison

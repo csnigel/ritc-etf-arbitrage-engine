@@ -1,0 +1,57 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+config/*.env
+!config/example.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editors and operating systems
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Strategy run output and market data
+ritcx_logs/
+logs/
+full_book_depth*
+order_book*
+snapshots.csv
+actions.csv
+pnl.csv
+summary.json
+parameters.json
+simulator_limits_at_startup.json
+*.jsonl
+*.jsonl.gz
+*.log
+
+# Archives, case materials, and temporary files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.pdf
+*.html
+*_files/
+tmp/
+temp/
+*.tmp

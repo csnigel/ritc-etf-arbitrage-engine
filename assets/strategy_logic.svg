@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180" role="img" aria-labelledby="title desc">
+  <title id="title">RITC ETF arbitrage and tender execution strategy</title>
+  <desc id="desc">Flow from synchronized market data through direct arbitrage or fixed-price tender routing, cost and risk checks, execution recovery, FX hedging, reconciliation, logging, and the next simulator case.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071527"/>
+      <stop offset="1" stop-color="#0d2138"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#020813" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#91a7bd"/>
+    </marker>
+    <style>
+      .title { font: 700 38px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f7fbff; }
+      .subtitle { font: 400 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #9fb3c8; }
+      .node-title { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f8fbff; }
+      .node-copy { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #dce8f2; }
+      .small { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #b7c8d8; letter-spacing: .04em; }
+      .arrow { stroke: #91a7bd; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .arrow-soft { stroke: #58718a; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .data { fill: #123f66; stroke: #39a8ff; stroke-width: 2; }
+      .decision { fill: #442f69; stroke: #b18cff; stroke-width: 2; }
+      .risk { fill: #123f3b; stroke: #47d7a3; stroke-width: 2; }
+      .execution { fill: #613c18; stroke: #ffad4d; stroke-width: 2; }
+      .recovery { fill: #5b2730; stroke: #ff7586; stroke-width: 2; }
+      .recon { fill: #173f2c; stroke: #63d58a; stroke-width: 2; }
+      .chip { rx: 12; ry: 12; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1180" rx="28" fill="url(#bg)"/>
+  <text x="80" y="66" class="title">ETF Arbitrage &amp; Tender Execution Engine</text>
+  <text x="80" y="98" class="subtitle">Event-driven simulator workflow • executable depth • protected fills • continuous case lifecycle</text>
+
+  <!-- Legend -->
+  <g transform="translate(915 38)">
+    <rect x="0" y="0" width="605" height="68" rx="16" fill="#0b1a2c" stroke="#29435c"/>
+    <rect x="20" y="20" width="18" height="18" rx="5" class="data"/><text x="48" y="34" class="small">MARKET DATA</text>
+    <rect x="150" y="20" width="18" height="18" rx="5" class="decision"/><text x="178" y="34" class="small">DECISION</text>
+    <rect x="265" y="20" width="18" height="18" rx="5" class="risk"/><text x="293" y="34" class="small">RISK</text>
+    <rect x="350" y="20" width="18" height="18" rx="5" class="execution"/><text x="378" y="34" class="small">EXECUTION</text>
+    <rect x="470" y="20" width="18" height="18" rx="5" class="recon"/><text x="498" y="34" class="small">RECONCILE</text>
+  </g>
+
+  <!-- Top data and decision -->
+  <g filter="url(#shadow)">
+    <rect x="510" y="138" width="580" height="86" rx="18" class="data"/>
+    <text x="800" y="171" text-anchor="middle" class="node-title">1 · Synchronized market state</text>
+    <text x="800" y="197" text-anchor="middle" class="node-copy">Case • positions • BULL / BEAR / RITC / USD books • fixed tenders</text>
+
+    <rect x="570" y="268" width="460" height="78" rx="18" class="decision"/>
+    <text x="800" y="299" text-anchor="middle" class="node-title">2 · Opportunity detection</text>
+    <text x="800" y="324" text-anchor="middle" class="node-copy">Bid/ask-aware edge + visible-depth sizing</text>
+  </g>
+  <path d="M800 224 L800 268" class="arrow"/>
+
+  <!-- Branch labels -->
+  <path d="M690 346 C690 375 415 365 415 404" class="arrow"/>
+  <path d="M910 346 C910 375 1185 365 1185 404" class="arrow"/>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="404" width="610" height="78" rx="18" class="decision"/>
+    <text x="415" y="435" text-anchor="middle" class="node-title">A · Direct ETF–basket arbitrage</text>
+    <text x="415" y="460" text-anchor="middle" class="node-copy">Fresh preflight • staged child sizing • passive lead alternative</text>
+
+    <rect x="880" y="404" width="610" height="78" rx="18" class="decision"/>
+    <text x="1185" y="435" text-anchor="middle" class="node-title">B · Fixed-price tender offers</text>
+    <text x="1185" y="460" text-anchor="middle" class="node-copy">Complete-route comparison before acceptance</text>
+  </g>
+
+  <!-- Direct branches -->
+  <path d="M300 482 L300 520" class="arrow-soft"/>
+  <path d="M530 482 L530 520" class="arrow-soft"/>
+  <g filter="url(#shadow)">
+    <rect x="115" y="520" width="365" height="92" rx="16" class="decision"/>
+    <text x="297" y="550" text-anchor="middle" class="node-title">Cheap RITC</text>
+    <text x="297" y="576" text-anchor="middle" class="node-copy">Buy RITC</text>
+    <text x="297" y="598" text-anchor="middle" class="node-copy">Sell BULL + BEAR</text>
+
+    <rect x="500" y="520" width="365" height="92" rx="16" class="decision"/>
+    <text x="682" y="550" text-anchor="middle" class="node-title">Rich RITC</text>
+    <text x="682" y="576" text-anchor="middle" class="node-copy">Sell RITC</text>
+    <text x="682" y="598" text-anchor="middle" class="node-copy">Buy BULL + BEAR</text>
+  </g>
+
+  <!-- Tender branches -->
+  <path d="M1185 482 L1185 515" class="arrow-soft"/>
+  <g filter="url(#shadow)">
+    <rect x="895" y="515" width="275" height="72" rx="15" class="decision"/>
+    <text x="1032" y="544" text-anchor="middle" class="node-title">Direct unwind</text>
+    <text x="1032" y="567" text-anchor="middle" class="node-copy">RITC book depth</text>
+
+    <rect x="1190" y="515" width="275" height="72" rx="15" class="decision"/>
+    <text x="1327" y="544" text-anchor="middle" class="node-title">Basket hedge</text>
+    <text x="1327" y="567" text-anchor="middle" class="node-copy">BULL + BEAR</text>
+
+    <rect x="895" y="605" width="275" height="72" rx="15" class="decision"/>
+    <text x="1032" y="634" text-anchor="middle" class="node-title">Hybrid route</text>
+    <text x="1032" y="657" text-anchor="middle" class="node-copy">Direct + basket residual</text>
+
+    <rect x="1190" y="605" width="275" height="72" rx="15" class="decision"/>
+    <text x="1327" y="634" text-anchor="middle" class="node-title">Converter-assisted</text>
+    <text x="1327" y="657" text-anchor="middle" class="node-copy">Exact 10k create / redeem lots</text>
+  </g>
+
+  <!-- Cost checks -->
+  <path d="M415 612 L415 720" class="arrow"/>
+  <path d="M1185 677 L1185 720" class="arrow"/>
+  <g filter="url(#shadow)">
+    <rect x="330" y="720" width="940" height="84" rx="18" class="decision"/>
+    <text x="800" y="751" text-anchor="middle" class="node-title">3 · Fully costed profitability</text>
+    <text x="800" y="777" text-anchor="middle" class="node-copy">Trading fees • limit rebates • slippage reserve • USD/CAD conversion • converter cost + route penalty</text>
+  </g>
+
+  <!-- Risk -->
+  <path d="M800 804 L800 838" class="arrow"/>
+  <g filter="url(#shadow)">
+    <rect x="260" y="838" width="1080" height="82" rx="18" class="risk"/>
+    <text x="800" y="868" text-anchor="middle" class="node-title">4 · Risk and timing gates</text>
+    <text x="800" y="894" text-anchor="middle" class="node-copy">Weighted gross + net • 2× RITC • matched inventory • tender capacity • lot checks • end-of-period cutoffs</text>
+  </g>
+
+  <!-- Execution / recovery / FX -->
+  <path d="M800 920 L800 950" class="arrow"/>
+  <g filter="url(#shadow)">
+    <rect x="120" y="950" width="405" height="92" rx="18" class="execution"/>
+    <text x="322" y="981" text-anchor="middle" class="node-title">5 · Order execution</text>
+    <text x="322" y="1007" text-anchor="middle" class="node-copy">Protected RITC lead • concurrent hedges</text>
+    <text x="322" y="1029" text-anchor="middle" class="node-copy">Tender settlement • automatic converter</text>
+
+    <rect x="598" y="950" width="405" height="92" rx="18" class="recovery"/>
+    <text x="800" y="981" text-anchor="middle" class="node-title">6 · Fill recovery</text>
+    <text x="800" y="1007" text-anchor="middle" class="node-copy">Zero / partial-fill detection • rollback</text>
+    <text x="800" y="1029" text-anchor="middle" class="node-copy">Residual unwind • campaign lock</text>
+
+    <rect x="1075" y="950" width="405" height="92" rx="18" class="execution"/>
+    <text x="1277" y="981" text-anchor="middle" class="node-title">7 · USD/CAD hedge</text>
+    <text x="1277" y="1007" text-anchor="middle" class="node-copy">Target zero residual USD</text>
+    <text x="1277" y="1029" text-anchor="middle" class="node-copy">Pre-lock converter funding</text>
+  </g>
+  <path d="M525 996 L598 996" class="arrow-soft"/>
+  <path d="M1003 996 L1075 996" class="arrow-soft"/>
+
+  <!-- Bottom reconciliation -->
+  <path d="M1277 1042 C1277 1070 1090 1065 1090 1092" class="arrow"/>
+  <path d="M800 1042 L800 1092" class="arrow-soft"/>
+  <g filter="url(#shadow)">
+    <rect x="515" y="1082" width="575" height="70" rx="17" class="recon"/>
+    <text x="802" y="1110" text-anchor="middle" class="node-title">8 · Settlement reconciliation &amp; audit</text>
+    <text x="802" y="1135" text-anchor="middle" class="node-copy">Expected vs observed positions • fill-based P&amp;L • structured logs • disk guard</text>
+  </g>
+
+  <!-- Loop-back line -->
+  <path d="M515 1117 L72 1117 L72 181 L510 181" class="arrow-soft"/>
+  <rect x="92" y="1068" width="335" height="32" rx="14" fill="#0b1a2c" stroke="#58718a"/>
+  <text x="259" y="1089" text-anchor="middle" class="small">NEXT ACTIVE CASE → RESET ONCE → CONTINUE</text>
+</svg>

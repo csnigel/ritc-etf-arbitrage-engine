@@ -1,0 +1,13 @@
+{
+  "sample_kind": "public_configuration_subset",
+  "live_trading": false,
+  "direct_scale_stage": 3,
+  "minimum_direct_edge_cad_per_share": 0.06,
+  "minimum_direct_total_pnl_cad": 40.0,
+  "maximum_direct_quantity_per_action": 10000,
+  "maximum_open_matched_arbitrage_quantity": 40000,
+  "maximum_weighted_gross": 220000,
+  "maximum_absolute_weighted_net": 25000,
+  "converter_lot_size": 10000,
+  "fx_hedge_trigger_usd": 5000
+}
