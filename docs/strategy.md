@@ -4,9 +4,9 @@
 
 RITC is quoted in USD, while BULL and BEAR are quoted in CAD. The engine treats one RITC share as economically comparable to one BULL share plus one BEAR share:
 
-\[
+$$
 P_{RITC}^{USD}\,F_{CAD/USD}\approx P_{BULL}^{CAD}+P_{BEAR}^{CAD}.
-\]
+$$
 
 This identity is only a reference. An executable opportunity must survive bid/ask spreads, equity fees in each instrument's quote currency, available USD/CAD depth, order-size rules, risk limits, and a minimum total-P&L filter.
 
@@ -16,19 +16,19 @@ This identity is only a reference. An executable opportunity must survive bid/as
 
 The cheap-ETF direction buys RITC at its ask, buys the USD needed for that RITC cash flow at the USD/CAD ask, and sells BULL and BEAR at their bids. For a depth slice, the approximate net edge is
 
-\[
+$$
 e_{cheap}=BULL_{bid}+BEAR_{bid}-(RITC_{ask}+f)FX_{ask}-2f,
-\]
+$$
 
-where \(f\) is the per-share market fee in the security's quote currency. The engine enters only when each consumed slice meets the direct edge threshold and the rounded package clears the total-P&L threshold.
+where $f$ is the per-share market fee in the security's quote currency. The engine enters only when each consumed slice meets the direct edge threshold and the rounded package clears the total-P&L threshold.
 
 ### Rich ETF
 
 The rich-ETF direction sells RITC at its bid, converts the resulting USD at the USD/CAD bid, and buys BULL and BEAR at their asks:
 
-\[
+$$
 e_{rich}=(RITC_{bid}-f)FX_{bid}-BULL_{ask}-BEAR_{ask}-2f.
-\]
+$$
 
 The two directions use opposite sides of every book; midpoint comparisons are not used for qualification.
 
@@ -69,11 +69,11 @@ The route with the highest eligible `score_cad` is selected. Basket routes subtr
 
 ## Converter economics
 
-The converter operates only in 10,000-share lots. For \(n\) uses, its CAD cost is
+The converter operates only in 10,000-share lots. For $n$ uses, its CAD cost is
 
-\[
+$$
 C_{converter}=n\times 1{,}500\;USD\times FX_{ask}.
-\]
+$$
 
 The mixed-route search iterates feasible lot counts, prices the direct remainder and basket portion from visible depth, and subtracts converter cost before testing profitability. A converter route is unavailable when the quantity is not an exact lot multiple, the correct direction is not armed, the asset/lease cannot be verified, time is too short, or another converter campaign is pending. This prevents conversion from being chosen merely because it closes inventory; it must improve the fully costed route score.
 
@@ -83,9 +83,9 @@ After tender settlement, the chosen route is re-priced. If converter preflight f
 
 RITC trades create or consume USD cash. Because opportunity valuation already prices those cash flows at executable USD/CAD bid or ask, the normal hedge target is zero residual USD:
 
-\[
+$$
 \Delta USD=0-USD_{current}.
-\]
+$$
 
 A positive adjustment buys USD; a negative adjustment sells USD. Background hedging waits until the exposure exceeds the configured trigger, while completed direct, passive, tender, and converter workflows can force immediate reconciliation. Before converter execution, excess or deficient USD is converted so that only the known converter funding requirement remains.
 
@@ -93,9 +93,9 @@ A positive adjustment buys USD; a negative adjustment sells USD. Background hedg
 
 Weighted gross and net are
 
-\[
+$$
 G=|BULL|+|BEAR|+2|RITC|,\qquad N=BULL+BEAR+2RITC.
-\]
+$$
 
 The 2× RITC weight matches the two-component basket. Direct actions must satisfy ordinary caps and the coherent matched-inventory cap. Inventory-reducing direct trades may continue above the ordinary gross cap only when gross falls strictly, absolute net does not worsen, and net is already within its cap. Tenders use separate transient caps because the tender settles before its hedge.
 

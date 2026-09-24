@@ -10,9 +10,9 @@ An event-driven ETF arbitrage and tender-execution engine developed for an educa
 
 The simulated ETF relationship is approximately
 
-\[
+$$
 P_{RITC}^{USD}\times FX_{CAD/USD}\approx P_{BULL}^{CAD}+P_{BEAR}^{CAD}.
-\]
+$$
 
 Every decision uses executable bid/ask prices and visible depth rather than midpoint prices. Fees, the passive-limit rebate, FX conversion, slippage protection, and converter cost are included where the route requires them.
 
@@ -38,13 +38,13 @@ The converter is selected only when its **net route score** remains superior aft
 
 ### Weighted exposure
 
-For positions \(q_B, q_{BR}, q_R\) in BULL, BEAR, and RITC:
+For positions $q_B$, $q_{BR}$, and $q_R$ in BULL, BEAR, and RITC:
 
-\[
+$$
 G=|q_B|+|q_{BR}|+2|q_R|,
 \qquad
 N=q_B+q_{BR}+2q_R.
-\]
+$$
 
 RITC receives a **2× position multiplier** because one RITC share is matched by one share of each basket component; the multiplier puts its limit consumption on the same two-leg basis as BULL + BEAR. The engine checks projected weighted gross and absolute weighted net before direct trades and after every planned tender step. A trade above the ordinary gross cap may proceed only when it strictly reduces gross risk, does not worsen absolute net exposure, and brings net exposure within its configured cap.
 
